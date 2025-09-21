@@ -1,0 +1,54 @@
+name: yedtek_case
+
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:2
+    ports: ["1883:1883"]
+    volumes:
+      - ./docker/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+
+  api:
+    build:
+      context: ./services/api
+      dockerfile: Dockerfile
+    environment:
+      MODELS_DIR: /models
+    volumes:
+      - ./models:/models:ro
+    ports: ["8000:8000"]
+    depends_on:
+      - mqtt-broker
+
+  worker:
+    build:
+      context: ./services/worker
+      dockerfile: Dockerfile
+    environment:
+      MQTT_HOST: mqtt-broker
+      MQTT_PORT: "1883"
+      TOPIC_IN: battery/+
+      # TOPIC_OUT: battery/B0006/pred
+      API_URL: http://api:8000/predict
+      MODELS_DIR: /models
+      USE_ENGINEERED: "0"   # <-- EKLE
+      MA_N: "5"             # <-- EKLE (rolling pencere boyutu)
+    volumes:
+      - ./models:/models:ro
+    depends_on:
+      - api
+      - mqtt-broker
+
+  ui:
+    build:
+      context: ./services/ui
+      dockerfile: Dockerfile
+    environment:
+      MQTT_HOST: mqtt-broker
+      MQTT_PORT: "1883"
+      TOPIC_SUB: battery/+/pred
+      STREAMLIT_SERVER_FILE_WATCHER_TYPE: none   # dosya izleyici kapalı (restart döngüsü biter)
+    ports: ["8501:8501"]
+    depends_on:
+      - worker
+      - api
+      - mqtt-broker

@@ -1,0 +1,26 @@
+{
+  "features": [
+    "voltage_v",
+    "current_a",
+    "temp_c"
+  ],
+  "window": 30,
+  "horizon": 1,
+  "shapes": {
+    "train": [
+      36196,
+      30,
+      3
+    ],
+    "val": [
+      9049,
+      30,
+      3
+    ],
+    "test": [
+      76151,
+      30,
+      3
+    ]
+  }
+}

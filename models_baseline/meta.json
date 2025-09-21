@@ -1,0 +1,12 @@
+{
+  "window": 30,
+  "horizon": 1,
+  "features": [
+    "voltage_v",
+    "current_a",
+    "temp_c"
+  ],
+  "engineered": false,
+  "ma_n": 5,
+  "estimator": "hgb"
+}
