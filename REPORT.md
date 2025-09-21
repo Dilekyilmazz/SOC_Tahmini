@@ -43,22 +43,29 @@ New-Item -ItemType Directory .\models | Out-Null
 robocopy .\models_baseline .\models /E
 
 # 3) (İsteğe bağlı) içerik kontrolü
+
 Get-ChildItem .\models
+
  ![alt text](image-6.png)
+
 
 4.3. Servisleri başlatma
 docker compose up -d
 •	UI: http://localhost:8501
 •	(API health kontrolü konteyner içinden)
 •	docker compose exec worker sh -lc "wget -qO- http://api:8000/health"
+
   ![alt text](image-7.png)
+  
 4.4. Canlı akış (her batarya için ayrı test)
 
 •	B0006
+
  ![alt text](image-8.png)
 
 
 •	B0005 
+
 ![alt text](image-9.png)
  
 
@@ -70,7 +77,9 @@ docker compose up -d
 
 
 •	B0018 
+
 ![alt text](image-10.png)
+
 ![alt text](image-11.png)
  
  
