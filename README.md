@@ -103,9 +103,20 @@ UI, lokal saat gösterir; gerekirse app.py içinde strftime('%d.%m.%Y %H:%M:%S')
 
 ## UI Önizleme
 
-**B0006 Canlı Akış Örneği**
-![alt text](image-13.png)
-**B0005 Canlı Akış Örneği**
-![alt text](image-14.png)
-**B00018 Canlı Akış Örneği**
-![alt text](image-15.png)
+•	B0006
+ ![alt text](image-8.png)
+
+
+•	B0005 
+![alt text](image-9.png)
+ 
+
+
+
+
+
+
+
+
+•	B0018 
+![alt text](image-10.png)
